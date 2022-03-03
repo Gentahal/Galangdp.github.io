@@ -56,7 +56,7 @@ a{
 
 .view-img{
     width: 30%;
-    background-image: url(/image/img1.png);
+    background-image: url(/img1.png);
     background-size: cover;
     background-repeat: no-repeat;
 }
