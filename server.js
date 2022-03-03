@@ -5,27 +5,20 @@ http.createServer((req, res) => {
     const url = req.url
 
     const renderHTML = (path, res) => {
-        console.log(path)
-        res.setHeader('Content-Type', 'text/html')
         fs.readFile(path, (err, datanya) => {
-            
             if(err){
                 res.writeHead(404)
                 res.write('Error, Page Not Found')
             }else{
-                console.log(datanya)
-                res.write(datanya.toString())
+                res.write(datanya)
             }
             res.end()
         })
     } 
-    console.log(url.toLowerCase())
+    
     switch (url.toLowerCase()) {
-        case '/':
-            renderHTML('index.html', res)
-            break;
-        case '/experience' :
-            renderHTML('./experience.html', res)
+        case '/index' :
+            renderHTML('./index.html', res)
             break;
         case '/about' :
             renderHTML('./about.html', res)
@@ -36,16 +29,24 @@ http.createServer((req, res) => {
         case '/experience' :
             renderHTML('./service.html', res)
             break;
-        case '/assets/style.css':
-            res.setHeader('Content-Type', 'text/css')
-            const fileContents = fs.readFileSync('Assets/style.css');
-            console.log(fileContents)
-            res.end(fileContents);
-            break
         default:
+            renderHTML('./contact.html', res)
     }
-    res.end()
-    
+
+    function panggilCSS(req, res){
+        if(req.url == '/style.css'){
+            res.writeHead(200, {
+                'Content-Type': 'text/css'
+            });
+            const fileContents = fs.readFileSync('./style.css', {encoding:'utf8'});
+            res.write(fileContents);
+            res.end();
+        }
+    }
+    res.writeHead(200, {
+        'Content-Type': 'text/html'
+    })
+    panggilCSS(req,res);
 
 }).listen(3000, () => {
     console.log('Server Listen = 3000')
