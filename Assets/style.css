@@ -5,9 +5,10 @@
 
 .header{
     padding: 20px;
-    margin-right: 20px;
+    
     display: flex;
     justify-content: space-between;
+    background-color: chartreuse;
 }
 
 .header2{
