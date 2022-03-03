@@ -2,36 +2,51 @@ const http = require('http');
 const fs = require('fs');
 
 http.createServer((req, res) => {
-
     const url = req.url
 
-    const input = (skipp, res) => {
-        fs.readFile(skipp, (err, datanya) => {
-            err? res.write('Error : File Not Found') : res.write(datanya);
+    const renderHTML = (path, res) => {
+        fs.readFile(path, (err, datanya) => {
+            if(err){
+                res.writeHead(404)
+                res.write('Error, Page Not Found')
+            }else{
+                res.write(datanya)
+            }
             res.end()
         })
     } 
-
+    
     switch (url.toLowerCase()) {
         case '/index' :
-            input('./index.html', res)
+            renderHTML('./index.html', res)
             break;
         case '/about' :
-            input('./about.html', res)
+            renderHTML('./about.html', res)
             break;
         case '/contact' :
-            input('./form.html', res)
+            renderHTML('./form.html', res)
             break;
         case '/experience' :
-            input('./service.html', res)
+            renderHTML('./service.html', res)
             break;
         default:
-            input('./contact.html', res)
+            renderHTML('./contact.html', res)
     }
 
+    function panggilCSS(req, res){
+        if(req.url == '/style.css'){
+            res.writeHead(200, {
+                'Content-Type': 'text/css'
+            });
+            const fileContents = fs.readFileSync('./style.css', {encoding:'utf8'});
+            res.write(fileContents);
+            res.end();
+        }
+    }
     res.writeHead(200, {
         'Content-Type': 'text/html'
     })
+    panggilCSS(req,res);
 
 }).listen(3000, () => {
     console.log('Server Listen = 3000')
