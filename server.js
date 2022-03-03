@@ -20,13 +20,13 @@ http.createServer((req, res) => {
             input('./about.html', res)
             break;
         case '/contact' :
-            input('./contact.html', res)
+            input('./form.html', res)
             break;
         case '/experience' :
-            input('./experience.html', res)
+            input('./service.html', res)
             break;
         default:
-            input('./portfoliokitaberdua.html', res)
+            input('./contact.html', res)
     }
 
     res.writeHead(200, {
