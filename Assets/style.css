@@ -4,14 +4,26 @@
 }
 
 .header{
-    background-color: coral;
     padding: 20px;
+    margin-right: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header2{
+    padding-left: 30px;
+}
+
+li{
+    display: inline;
+    padding: 50px;
 }
 
 .profile{
-    float: right;
-    margin-top: -40px;
-    font-size: 20px;
-    margin-left: 40px;
     display: inline;
+    align-self: center;
+}
+.image{
+    width: 200px;
+    
 }
