@@ -5,10 +5,9 @@
 
 .header{
     padding: 20px;
-    
     display: flex;
     justify-content: space-between;
-    background-color: chartreuse;
+    background-color: rgb(147, 156, 255);
 }
 
 .header2{
@@ -24,7 +23,38 @@ li{
     display: inline;
     align-self: center;
 }
-.image{
-    width: 200px;
-    
+.view{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-family: sans-serif;
 }
+
+.view-txt{
+    font-size: 25px;
+    width: 50%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.view-txt h2{
+    align-self: center;
+}
+
+.view img{
+    width: 30%;
+    padding: 30px;
+    border-radius: 60%;
+}
+
+footer{
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+    background-color: rgb(147, 156, 255);
+}
+
