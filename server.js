@@ -1,20 +1,38 @@
-const http = require("http")
+const http = require('http');
+const fs = require('fs');
 
-const server = http.createServer((req, res) =>{
+http.createServer((req, res) => {
 
-    let data ; 
+    const url = req.url
 
-    console.log(req);
+    const input = (skipp, res) => {
+        fs.readFile(skipp, (err, datanya) => {
+            err? res.write('Error : File Not Found') : res.write(datanya);
+            res.end()
+        })
+    } 
 
-    data = {
-        url : req.url,
-        method : req.method,
-        header : req.headers
+    switch (url.toLowerCase()) {
+        case '/index' :
+            input('./index.html', res)
+            break;
+        case '/about' :
+            input('./about.html', res)
+            break;
+        case '/contact' :
+            input('./contact.html', res)
+            break;
+        case '/experience' :
+            input('./experience.html', res)
+            break;
+        default:
+            input('./portfoliokitaberdua.html', res)
     }
 
-    res.setHeader("Content-Type", "application/json")
+    res.writeHead(200, {
+        'Content-Type': 'text/html'
+    })
 
-    res.end(JSON.stringify(data))
+}).listen(3000, () => {
+    console.log('Server Listen = 3000')
 });
-
-server.listen(3000)
